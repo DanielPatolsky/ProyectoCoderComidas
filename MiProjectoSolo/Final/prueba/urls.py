@@ -13,4 +13,7 @@ urlpatterns = [
     path('formulariociudades/', formuciudades, name= "Formulariociudades"),
     path('busquedarestaurantes/', busquedarestaurantes, name= "Busquedarestaurantes"),
     path('buscar/', buscar, name= "Buscar"),
+    path('leerciudades/', leerciudades, name= "LeerCiudades"),
+    path('eliminarciudad/<ciudad_continente>/', eliminarciudad, name= "EliminarCiudad"),
+    path('editarciudad/<ciudad_continente>/', editarciudad, name= "EditarCiudad"),
 ]

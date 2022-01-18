@@ -65,15 +65,41 @@ def busquedarestaurantes(request):
 def buscar(request):
     if request.GET["pais"]:
         pais = request.GET["pais"]
-        restaurante = Restaurante.objects.filter(pais__icontains=pais)
-        return render(request, "prueba/resultadobusqueda.html",{})   
+        restaurantes = Restaurante.objects.filter(pais__icontains=pais)
+        return render(request, "resultadobusqueda.html",{"restaurantes":restaurantes, "pais":pais})   
     else:
         respuesta= "Mandame informacion "
     return HttpResponse(respuesta)
 #-------------------------------------------------------------------#----------------------------------------------------------------#
 
 
+def leerciudades(request):
+    ciudades = Ciudad.objects.all()
+    contexto = {"ciudades":ciudades}
+    return render(request,"leerciudades.html", contexto)
+
+def eliminarciudad(request, ciudad_continente):
+    ciudadqueborro = Ciudad.objects.get(continente=ciudad_continente)
+    ciudadqueborro.delete()
+    ciudades = Ciudad.objects.all()
+    return render(request, "leerciudades.html", {"ciudades":ciudades})
+
+def editarciudad(request, ciudad_continente):
+    ciudad = Ciudad.objects.get(continente=ciudad_continente)
+    if request.method == "POST":
+        miFormulario3 = FormuCiudades(request.POST)
+        if miFormulario3.is_valid():
+            informacion = miFormulario3.cleaned_data
+
+            ciudad.pais = informacion["pais"]
+            ciudad.continente = informacion["continente"]
+
+            ciudad.save()
+
+            return render(request, "inicio.html")
+    else:
+            miFormulario3 = FormuCiudades(initial={"pais":ciudad.pais,  "continente":ciudad.continente})
+    return render(request, "editarciudad.html",{"miFormulario":miFormulario3, "ciudad_continente":ciudad_continente})
 
 
-
-
+#-------------------------------------------------------------------#----------------------------------------------------------------#

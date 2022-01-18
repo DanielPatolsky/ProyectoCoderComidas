@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Comida(models.Model):
     pais =models.CharField(max_length=100)
     comida =models.CharField(max_length=100)
@@ -22,4 +23,3 @@ class Ciudad(models.Model):
 
     def __str__(self):
         return f"Pais: {self.pais} Continente: {self.continente}"
-        

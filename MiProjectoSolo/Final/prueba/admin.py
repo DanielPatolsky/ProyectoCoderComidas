@@ -7,3 +7,5 @@ from .models import *
 admin.site.register(Comida)
 
 admin.site.register(Restaurante)
+
+admin.site.register(Ciudad)

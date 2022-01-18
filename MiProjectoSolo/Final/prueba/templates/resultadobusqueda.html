@@ -1,0 +1,29 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+    {% block contenidotitulo %}
+    
+        <title>busqueda</title>
+
+    {% endblock %}
+
+    {% block contenidosubtitulo %}
+    <h1 class="masthead-heading text-uppercase mb-0">buscando restaurante</h1>
+    {% endblock %}
+
+    {% block contenido %}
+
+        <h1>Estamos buscando....</h1>
+        {% if restaurantes %}
+            <ul>
+            {% for restaurante in restaurantes %}
+
+            <li>Pais: {{restaurante.pais}}</li>
+            <li>Nombre: {{restaurante.nombre}}</li>
+            {% endfor %}
+            
+            </ul>
+        {% endif %}
+        
+    {% endblock %}

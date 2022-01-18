@@ -1,0 +1,38 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+    {% block contenidotitulo %}
+    
+        <title>Este es el inicio</title>
+
+    {% endblock %}
+
+    {% block contenidosubtitulo %}
+    <h1 class="masthead-heading text-uppercase mb-0">editarciudad</h1>
+    {% endblock %}
+
+    {% block contenido %}
+
+        {% if miFormulario.errors %}
+
+        <p style="color: red;"> ERROR! </p>
+
+        {% endif %}
+
+
+
+        <form action="/prueba/formulariociudades/" method="POST">{% csrf_token %}
+
+            <table>
+
+                {{ miFormulario.as_table }}
+
+            </table>
+
+
+            <input type="submit" value="Enviar">
+
+        </form>
+
+    {% endblock %}

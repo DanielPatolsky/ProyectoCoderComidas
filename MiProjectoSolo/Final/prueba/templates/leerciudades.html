@@ -1,0 +1,28 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+    {% block contenidotitulo %}
+    
+        <title>Este es el inicio</title>
+
+    {% endblock %}
+
+    {% block contenidosubtitulo %}
+    <h1 class="masthead-heading text-uppercase mb-0">Ciudades de la BD</h1>
+    {% endblock %}
+
+    {% block contenido %}
+
+        {% for x in ciudades %}
+            
+        <li> {{x}} </li>
+        <button>
+            <a href="{% url 'EliminarCiudad' x.continente %}">Eliminar</a>
+            <a href="{% url 'EditarCiudad' x.continente %}">Editar</a>
+        </button>
+        {% endfor %}
+
+        <a href="{% url 'Formulariociudades' %}">AGREGAR OTRA CIUDAD</a>
+
+    {% endblock %}
