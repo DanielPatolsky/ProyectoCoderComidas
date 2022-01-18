@@ -1,0 +1,22 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+    {% block contenidotitulo %}
+    
+        <title>busqueda</title>
+
+    {% endblock %}
+
+    {% block contenidosubtitulo %}
+    <h1 class="masthead-heading text-uppercase mb-0">buscando restaurante</h1>
+    {% endblock %}
+
+    {% block contenido %}
+
+    <form action="/prueba/buscar/" method="GET">
+        <input type="text" name="pais" id= "pais">
+        <input type="submit" value="Buscar">
+    </form>
+
+    {% endblock %}

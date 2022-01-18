@@ -1,0 +1,38 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+    {% block contenidotitulo %}
+    
+        <title>Formulario Restaurantes</title>
+
+    {% endblock %}
+
+    {% block contenidosubtitulo %}
+    <h1 class="masthead-heading text-uppercase mb-0">Formulario Restaurantes</h1>
+    {% endblock %}
+
+    {% block contenido %}
+
+        {% if miFormulario.errors %}
+
+        <p style="color: red;"> ERROR! </p>
+
+        {% endif %}
+
+
+
+        <form action="/prueba/formulariorestaurantes/" method="POST">{% csrf_token %}
+
+            <table>
+
+                {{ miFormulario.as_table }}
+
+            </table>
+
+
+            <input type="submit" value="Enviar">
+
+        </form>
+
+    {% endblock %}
