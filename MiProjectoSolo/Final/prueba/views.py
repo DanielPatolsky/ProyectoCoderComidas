@@ -74,6 +74,7 @@ def formuciudades(request):
             miFormulario3 = FormuCiudades()
     return render(request, "formuciudades.html",{"miFormulario":miFormulario3})
 
+@login_required
 def leerciudades(request):
     ciudades = Ciudad.objects.all()
     contexto = {"ciudades":ciudades}
@@ -163,4 +164,20 @@ def register(request):
             #form = UserCreationForm()             
             form = UserRegisterForm()     
       return render(request,"register.html" ,  {"form":form})
+
+@login_required
+def editarPerfil(request):
+    usuario = request.user
+    if request.method == 'POST':
+        miFormulario = UserEditForm(request.POST)
+        if miFormulario.is_valid():
+            informacion = miFormulario.cleaned_data
+            usuario.email = informacion['email']
+            usuario.password1 = informacion['password1']
+            usuario.password2 = informacion['password2']
+            usuario.save()
+            return render(request, "inicio.html")
+    else:
+        miFormulario = UserEditForm(initial={'email':usuario.email})
+    return render(request, "editarPerfil.html", {"miFormulario":miFormulario, "usuario":usuario})
 

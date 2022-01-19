@@ -1,6 +1,7 @@
 from unicodedata import name
 from django.urls import path
 from prueba.views import *
+from django.contrib.auth.views import LogoutView
 
 
 urlpatterns = [
@@ -26,6 +27,8 @@ urlpatterns = [
     #Login
     path('login/', login_request, name="Login"),
     path('register/', register, name="Register"),
+    path('logout/', LogoutView.as_view(template_name='logout.html'), name="Logout"),
+    path('editarperfil', editarPerfil, name="EditarPerfil"),
     
 
 ]
