@@ -13,7 +13,7 @@
     {% endblock %}
 
     {% block contenido %}
-
+        <h1>Estas son las comidas:</h1>
         {% for comida in object_list %}
             
         <li>Comida: {{comida.comida}} 
@@ -28,6 +28,7 @@
         </button>
         {% endfor %}
 
+        <a href="{% url 'New' %}">Agregar nueva Comida</a>
         
 
     {% endblock %}

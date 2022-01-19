@@ -137,7 +137,7 @@ class ComidaDetalle(DetailView):
 
 class ComidaCreacion(CreateView):
     model = Comida
-    success_url= "../comida/list"
+    success_url= "comida/list"
     fields = ["pais","comida"]
 
 class ComidaUpdate(UpdateView):
