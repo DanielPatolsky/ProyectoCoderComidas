@@ -8,9 +8,19 @@ from django.http import HttpResponse
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 # Create your views here.
 
 def inicio(request):
+
+        #Intente usar un avatar pero por alguna razon me tira error al poner esta lineas de codigo.
+        #diccionario = {}
+        #cantidadDeAvatares = 0
+        #if request.user.is_authenticated:
+        #avatar = Avatar.objects.filter( user = request.user.id)    
+        #for a in avatar:
+        #cantidadDeAvatares = cantidadDeAvatares + 1
+        #diccionario["avatar"] = avatar[cantidadDeAvatares-1].imagen.url 
     return render(request, "inicio.html")
 
 def comidas(request):
@@ -21,6 +31,12 @@ def restaurantes(request):
 
 def ciudades(request):
     return render(request, "ciudades.html")
+
+def about(request):
+    return render(request, "about.html")
+
+def nofunciona(request):
+    return render(request, "nofunciona.html")
 
 #-------------------------------------------------------------------#----------------------------------------------------------------#
 
@@ -109,12 +125,12 @@ from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
-#leer
+#CRUD COMIDAS-------------------------------------------------------------------#----------------------------------------------------------------#
 class ComidaList(ListView):
     model= Comida
     template_name= "comidas_list.html"
 
-#detalle
+
 class ComidaDetalle(DetailView):
     model = Comida
     template_name = "comida_detalle.html"
@@ -132,6 +148,29 @@ class ComidaUpdate(UpdateView):
 class ComidaDelete(DeleteView):
     model = Comida
     success_url= "../comida/list"
+
+#CRUD Restaurantes-------------------------------------------------------------------#----------------------------------------------------------------#
+class RestauranteList(ListView):
+    model= Restaurante
+    template_name= "restaurantes_list.html"
+
+class RestauranteDetalle(DetailView):
+    model = Restaurante
+    template_name = "restaurante_detalle.html"
+
+class RestauranteCreacion(CreateView):
+    model = Restaurante
+    success_url= "restaurante/list"
+    fields = ["pais","nombre"]
+
+class RestauranteUpdate(UpdateView):
+    model = Restaurante
+    success_url= "../restaurante/list"
+    fields = ["pais","nombre"]
+
+class RestauranteDelete(DeleteView):
+    model = Restaurante
+    success_url= "../restaurante/list"
 
 #-------------------------------------------------------------------#----------------------------------------------------------------#
 
@@ -181,3 +220,15 @@ def editarPerfil(request):
         miFormulario = UserEditForm(initial={'email':usuario.email})
     return render(request, "editarPerfil.html", {"miFormulario":miFormulario, "usuario":usuario})
 
+@login_required
+def agregarAvatar(request):
+      if request.method == 'POST':
+            miFormulario = AvatarFormulario(request.POST, request.FILES) 
+            if miFormulario.is_valid():   
+                  u = User.objects.get(username=request.user)
+                  avatar = Avatar (user=u, imagen=miFormulario.cleaned_data['imagen'])      
+                  avatar.save()
+                  return render(request, "inicio.html") 
+      else: 
+            miFormulario= AvatarFormulario() 
+      return render(request, "agregarAvatar.html", {"miFormulario":miFormulario})

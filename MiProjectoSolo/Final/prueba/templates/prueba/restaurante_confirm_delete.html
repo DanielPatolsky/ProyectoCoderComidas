@@ -1,0 +1,26 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+    {% block contenidotitulo %}
+    
+        <title>Este es el inicio</title>
+
+    {% endblock %}
+
+    {% block contenidosubtitulo %}
+    <h1 class="masthead-heading text-uppercase mb-0">Confirmar eliminacion</h1>
+    {% endblock %}
+
+    {% block contenido %}
+
+        <form method="post"> {% csrf_token %}
+
+            Estas seguro??? --->  "{{ object }}"
+
+            <input type="submit" value="submit" />
+
+
+
+        </form>
+    {% endblock %}

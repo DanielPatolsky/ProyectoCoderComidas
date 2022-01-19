@@ -14,7 +14,16 @@
 
     {% block contenido %}
 
-        <h1>Titulo de restaurantes</h1>
-        <p>Este es el parrafo de los restaurantes</p>
+        <h1>Restaurantes:</h1>
+        <img src="https://chefandhotel.cl/media/zoo/images/Johnny_B_Good_PRINCIPAL-INTERIOR_7e5314d69463420aeecaddd630c5d02d.jpg" style: width= 500px; height=500px;>
+        <h6>El Restaurante johnny b good es muy conocido por el mundo, tiene una tematica musical y sus comidas son exquisitas segun criticas y reseñas de muchos clientes.</h6>
+        <br>
+        <img src="https://emtstatic.com/2021/10/imagen_emt.jpeg" style: width= 500px; height=500px;>
+        <h6>El restaurante/franquicia de burger King es reconocida mundialmente por sus hamburguesas deliciosas, actualmente se encuentras en muchos paises del mundo.</h6>
+
+        <h3>Haz click abajo para ver los demas Restaurantes.</h3>
+        <button>
+            <a href="{% url 'ResList' %}"> Haz click aqui</a>
+        </button>
 
     {% endblock %}

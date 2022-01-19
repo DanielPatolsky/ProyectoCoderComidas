@@ -4,18 +4,23 @@
 
     {% block contenidotitulo %}
     
-        <title>Este es el inicio</title>
+        <title>INICIO</title>
 
     {% endblock %}
 
     {% block contenidosubtitulo %}
-    <h1 class="masthead-heading text-uppercase mb-0">Inicio</h1>
+    <h1 class="masthead-heading text-uppercase mb-0">Enterate todo sobre:</h1>
     {% endblock %}
 
     {% block contenido %}
 
         <h3>{{ mensaje }}</h3>
-        <h1>Titulo del inicio</h1>
-        <p>Este es el parrafo del iniciogod</p>
-
+        {% if not request.user.is_authenticated %}
+        <p>Recordatorio: Para poder agregar informacion debes Logearte!</p>
+        <p>Si aun no tienes un Usuario puedes registrarte en el boton de abajo!</p>
+        <button>
+        <a href="{% url 'Register' %}">Registrarse</a>
+        
+        </button>
+        {% endif %}
     {% endblock %}

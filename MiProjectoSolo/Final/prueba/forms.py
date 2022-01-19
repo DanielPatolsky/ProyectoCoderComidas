@@ -38,3 +38,8 @@ class UserRegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2', 'last_name', 'first_name'] 
+
+    
+class AvatarFormulario(forms.Form):
+    
+    imagen = forms.ImageField(required=True)

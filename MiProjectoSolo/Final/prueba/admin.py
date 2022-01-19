@@ -9,3 +9,5 @@ admin.site.register(Comida)
 admin.site.register(Restaurante)
 
 admin.site.register(Ciudad)
+
+admin.site.register(Avatar)

@@ -14,7 +14,20 @@
 
     {% block contenido %}
 
-        <h1>Titulo de comidas</h1>
-        <p>Este es el parrafo de las comidas</p>
+        <h1>Comidas:</h1>
+        
+        <img src="https://lifestyle.americaeconomia.com/sites/lifestyle.americaeconomia.com/files/styles/inline_picture/public/asado_0.jpg?itok=HP-60Fna" style: width= 500px; height=500px;>
+        <h6>El Asado es una comida proveniente de Argentina, la cual muchas personas la recomiendan comer por su exquisito sabor.</h6>
+        <br>
+        <img src="https://img.vixdata.io/pd/jpg-large/es/sites/default/files/imj/elgranchef/C/Condimento%20para%20tacos%20hecho%20en%20casa%202.jpg" style: width= 500px; height=500px;>
+        <h6>Los tacos son una comida proveniente de Mexico, se lo come en muchas partes del mundo, hay muchas variantes y es muy recomendable ponerle picante.</h6>
+
+
+
+
+        <h3>Haz click abajo para ver las demas Comidas.</h3>
+        <button>
+            <a href="{% url 'List' %}"> Haz click aqui</a>
+        </button>
 
     {% endblock %}

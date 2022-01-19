@@ -4,7 +4,7 @@
 
     {% block contenidotitulo %}
 
-        <title>Las ciudades</title>
+        <title>Las Ciudades</title>
 
     {% endblock %}
 
@@ -14,7 +14,17 @@
 
     {% block contenido %}
 
-        <h1>Titulo de ciudades</h1>
-        <p>Este es el parrafo de las ciudades</p>
+        <h1>Ciudades:</h1>
+        <img src="https://www.cordoba.gob.ar/wp-content/uploads/2020/09/drone-san-martn-scaled-1-800x400@2x.jpg" style: width= 500px; height=500px;>
+        <h6>La ciudad de cordoba es una Hermosa ciudad del pais de la Argentina, en el continente americano. En dicha ciudad tienes muchas cosas para realizar en familia y amigos..</h6>
+        <br>
+        <img src="https://gostudyaus.es/wp-content/uploads/2018/09/SYD_header.jpg" style: width= 500px; height=500px;>
+        <h6>La ciudad de Sidney es de Australia. Es una ciudad bellisima la cual puedes visitar centros turisticos, zoologicos y muchas cosas muy lindas.</h6>
+
+        <h3>Haz click abajo para ver las demas Ciudades.</h3>
+      
+        <button>
+            <a href="{% url 'Nofunciona' %}"> Haz click aqui</a>
+        </button>
 
     {% endblock %}
