@@ -15,3 +15,6 @@ Aun así, pretendo seguir realizando cursos extras enfocados a mi carrera y fina
 
 
 El proyecto lo fuimos realizando atraves de discord, uno compartia pantalla y los demas iban viendo y hablando de las cosas a la cual agregar y errores que nos saltaban, esto nos facilito mucho el proceso ya que siempre entendiamos todo y no teniamos que hacer ningun esfuerzo extra en ver por ejemplo el nombre a las variales que le puso la otra persona y cosas asi.
+
+
+Casos de Prueba: https://docs.google.com/spreadsheets/d/1KVUc2u2qHiH_ISBrVIaTP1GOtNKOmxueKcDddhByGDc/edit?usp=sharing
