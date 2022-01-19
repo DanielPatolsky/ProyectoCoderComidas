@@ -1,0 +1,33 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+    {% block contenidotitulo %}
+    
+        <title>Este es el inicio</title>
+
+    {% endblock %}
+
+    {% block contenidosubtitulo %}
+    <h1 class="masthead-heading text-uppercase mb-0">Comidas List</h1>
+    {% endblock %}
+
+    {% block contenido %}
+
+        {% for comida in object_list %}
+            
+        <li>Comida: {{comida.comida}} 
+            
+        </li>
+        <button>
+            <a href="{% url 'Detail' comida.id %}">Ver mas</a>
+        </button>
+            <a href="{% url 'Edit' comida.id %}">Editar</a>
+        </button>
+            <a href="{% url 'Eliminar' comida.id %}">Eliminar</a>
+        </button>
+        {% endfor %}
+
+        
+
+    {% endblock %}

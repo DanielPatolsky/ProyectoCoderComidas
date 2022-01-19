@@ -9,13 +9,18 @@
     {% endblock %}
 
     {% block contenidosubtitulo %}
-    <h1 class="masthead-heading text-uppercase mb-0">Inicio</h1>
+    <h1 class="masthead-heading text-uppercase mb-0">Confirmar eliminacion</h1>
     {% endblock %}
 
     {% block contenido %}
 
-        <h3>{{ mensaje }}</h3>
-        <h1>Titulo del inicio</h1>
-        <p>Este es el parrafo del iniciogod</p>
+        <form method="post"> {% csrf_token %}
 
+            Estas seguro??? --->  "{{ object }}"
+
+            <input type="submit" value="submit" />
+
+
+
+        </form>
     {% endblock %}

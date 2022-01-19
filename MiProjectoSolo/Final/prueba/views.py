@@ -1,8 +1,13 @@
+from ast import Delete
+import imp
 from django.shortcuts import render
 from prueba.forms import *
 from prueba.models import *
 from prueba.models import *
 from django.http import HttpResponse
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def inicio(request):
@@ -44,21 +49,6 @@ def formucomidas(request):
             miFormulario2 = FormuComidas()
     return render(request, "formucomidas.html",{"miFormulario":miFormulario2})
 #-------------------------------------------------------------------#----------------------------------------------------------------#
-
-def formuciudades(request):
-    if request.method == "POST":
-        miFormulario3 = FormuCiudades(request.POST)
-        if miFormulario3.is_valid():
-            informacion = miFormulario3.cleaned_data
-            ciudad = Ciudad(pais = informacion["pais"], continente = informacion["continente"])
-            ciudad.save()
-            return render(request, "inicio.html")
-    else:
-            miFormulario3 = FormuCiudades()
-    return render(request, "formuciudades.html",{"miFormulario":miFormulario3})
-
-
-#-------------------------------------------------------------------#----------------------------------------------------------------#
 def busquedarestaurantes(request):
     return render(request, "busquedarestaurantes.html")
 
@@ -72,6 +62,17 @@ def buscar(request):
     return HttpResponse(respuesta)
 #-------------------------------------------------------------------#----------------------------------------------------------------#
 
+def formuciudades(request):
+    if request.method == "POST":
+        miFormulario3 = FormuCiudades(request.POST)
+        if miFormulario3.is_valid():
+            informacion = miFormulario3.cleaned_data
+            ciudad = Ciudad(pais = informacion["pais"], continente = informacion["continente"])
+            ciudad.save()
+            return render(request, "inicio.html")
+    else:
+            miFormulario3 = FormuCiudades()
+    return render(request, "formuciudades.html",{"miFormulario":miFormulario3})
 
 def leerciudades(request):
     ciudades = Ciudad.objects.all()
@@ -103,3 +104,63 @@ def editarciudad(request, ciudad_continente):
 
 
 #-------------------------------------------------------------------#----------------------------------------------------------------#
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
+#leer
+class ComidaList(ListView):
+    model= Comida
+    template_name= "comidas_list.html"
+
+#detalle
+class ComidaDetalle(DetailView):
+    model = Comida
+    template_name = "comida_detalle.html"
+
+class ComidaCreacion(CreateView):
+    model = Comida
+    success_url= "../comida/list"
+    fields = ["pais","comida"]
+
+class ComidaUpdate(UpdateView):
+    model = Comida
+    success_url= "../comida/list"
+    fields = ["pais","comida"]
+
+class ComidaDelete(DeleteView):
+    model = Comida
+    success_url= "../comida/list"
+
+#-------------------------------------------------------------------#----------------------------------------------------------------#
+
+def login_request(request):
+    if request.method =="POST":
+        form = AuthenticationForm(request, data = request.POST)
+        if form.is_valid():  
+            usuario = form.cleaned_data.get("username")
+            contra = form.cleaned_data.get("password")          
+            user = authenticate(username=usuario, password = contra)
+            if user is not None: 
+                login(request, user)
+                return render(request, "inicio.html", {"mensaje":f"BIENVENIDO, {usuario}!"})
+            else:
+                return render(request, "inicio.html", {"mensaje":f"DATOS INCORRECTOS!"})           
+        else:
+            return render(request, "inicio.html", {"mensaje":f"FORMULARIO erroneo"})
+    form = AuthenticationForm() 
+    return render(request, "login.html", {"form":form} )
+
+def register(request):
+      if request.method == 'POST':
+            #form = UserCreationForm(request.POST)
+            form = UserRegisterForm(request.POST)
+            if form.is_valid():
+                  username = form.cleaned_data['username']
+                  form.save()
+                  return render(request,"inicio.html" ,  {"mensaje":f"{username} Creado :)"})
+      else:
+            #form = UserCreationForm()             
+            form = UserRegisterForm()     
+      return render(request,"register.html" ,  {"form":form})
+

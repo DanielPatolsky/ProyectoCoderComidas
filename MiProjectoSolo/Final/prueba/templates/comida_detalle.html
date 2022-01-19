@@ -1,0 +1,23 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+    {% block contenidotitulo %}
+    
+        <title>Este es el inicio</title>
+
+    {% endblock %}
+
+    {% block contenidosubtitulo %}
+    <h1 class="masthead-heading text-uppercase mb-0">Detalle de la Comida</h1>
+    {% endblock %}
+
+    {% block contenido %}
+
+        <p>Comida: <i>{{comida.comida}}</i> </p>
+        <p>Pais: <i>{{comida.pais}}</i> </p>
+
+        <p>
+            <a href="{% url 'List' %}">Regresar</a>
+        </p>
+    {% endblock %}

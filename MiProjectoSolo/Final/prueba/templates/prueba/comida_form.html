@@ -9,13 +9,15 @@
     {% endblock %}
 
     {% block contenidosubtitulo %}
-    <h1 class="masthead-heading text-uppercase mb-0">Inicio</h1>
+    <h1 class="masthead-heading text-uppercase mb-0">Formulario de comida</h1>
     {% endblock %}
 
     {% block contenido %}
 
-        <h3>{{ mensaje }}</h3>
-        <h1>Titulo del inicio</h1>
-        <p>Este es el parrafo del iniciogod</p>
+        <form method = "POST"> {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value = "Enviar">
+
+        </form>
 
     {% endblock %}
